@@ -1,0 +1,19 @@
+<div class="container ingresar">
+  <h1>Ingresar al sistema</h1>
+    <form id="Login">
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input [(ngModel)]="usuario.email" type="email" class="form-control" id="inputEmail" placeholder="Email" name="emailRecibido">
+        </div>
+    
+        <div class="form-group">
+            <label for="inputPassword">Contraseña</label>
+            <input [(ngModel)]="usuario.password" type="password" class="form-control" id="inputPassword" placeholder="Contraseña" name="passwordRecibido">
+        </div>
+        
+        <div *ngIf="error" class="error">{{mensaje}}</div>        
+        <button type="submit" class="btn btn-primary btn-block" (click)="ingresarSistema()">Ingresar</button>
+        <a href="/crearUsuario" role="submit" class="btn btn-success">Crear Usuario</a>
+        
+    </form>
+</div>

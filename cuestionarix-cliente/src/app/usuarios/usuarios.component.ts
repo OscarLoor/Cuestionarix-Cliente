@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario';
 import { UsuarioService } from '../usuario.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-usuarios',
@@ -46,13 +47,14 @@ export class UsuariosComponent implements OnInit {
     });
   }
   
-  constructor(private usuarioService: UsuarioService) {
-    this.idUsuario = 1;
-    this.administrador = this.esAdministrador(this.idUsuario);
-    this.token = "rutasSecretas";
+  constructor(private usuarioService: UsuarioService, private cookieService: CookieService){
+    
   }
 
   ngOnInit() {
+    this.idUsuario = parseInt(this.cookieService.get('idUsuario'));
+    this.administrador = this.esAdministrador(this.idUsuario);
+    this.token = this.cookieService.get('token');
     this.getUsuarios();
   }
 

@@ -7,14 +7,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private usuariosUrl = 'http://localhost:8081/mostrarUsuarios';  // URL to web api
-
+  urlBase ="http://localhost:8081";
+  
   constructor(private http: HttpClient,) { }
+
   getUsuarios(token:string, id:number): Observable<Usuario[]>{
 
     const data = {'token': token, 'id': id};
     const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
-    return this.http.post<Usuario[]>(this.usuariosUrl, data, config)
+    return this.http.post<Usuario[]>(this.urlBase+"/mostrarUsuarios", data, config)
   }
+
+  ingresarSistema(email:string, password:number){
+
+    const data = {'email': email, 'password': password};
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+
+    return this.http.post(this.urlBase+"/ingresar", data, config)
+  }
+
 }
