@@ -1,0 +1,16 @@
+<h2>{{usuarioNuevo.email}}</h2>
+<div><span>id: </span>{{usuarioNuevo.id}}</div>
+<div><span>Nombres: </span>{{usuarioNuevo.nombres}}</div>
+<div><span>Apellidos: </span>{{usuarioNuevo.apellidos}}</div>
+<div><span>Cédula: </span>{{usuarioNuevo.cedula}}</div>
+<div><span>Email: </span>{{usuarioNuevo.email}}</div>
+<div><span>Password: </span>{{usuarioNuevo.password}}</div>
+<div><span>fechaCreacion: </span>{{usuarioNuevo.fechaCreacion}}</div>
+<div><span>fechaActualizacion: </span>{{usuarioNuevo.fechaActualizacion}}</div>
+<div><span>fechaUltimoAcceso: </span>{{usuarioNuevo.fechaUltimoAcceso}}</div>
+
+<div>
+  <label>Nombres con 2 data binding:
+    <input [(ngModel)]="usuarioNuevo.nombres" placeholder="Nombres">
+  </label>
+</div>
