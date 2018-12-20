@@ -1,16 +1,37 @@
-<h2>{{usuarioNuevo.email}}</h2>
-<div><span>id: </span>{{usuarioNuevo.id}}</div>
-<div><span>Nombres: </span>{{usuarioNuevo.nombres}}</div>
-<div><span>Apellidos: </span>{{usuarioNuevo.apellidos}}</div>
-<div><span>Cédula: </span>{{usuarioNuevo.cedula}}</div>
-<div><span>Email: </span>{{usuarioNuevo.email}}</div>
-<div><span>Password: </span>{{usuarioNuevo.password}}</div>
-<div><span>fechaCreacion: </span>{{usuarioNuevo.fechaCreacion}}</div>
-<div><span>fechaActualizacion: </span>{{usuarioNuevo.fechaActualizacion}}</div>
-<div><span>fechaUltimoAcceso: </span>{{usuarioNuevo.fechaUltimoAcceso}}</div>
 
-<div>
-  <label>Nombres con 2 data binding:
-    <input [(ngModel)]="usuarioNuevo.nombres" placeholder="Nombres">
-  </label>
+<div class="container usuarios">
+    <a href="/agregarUsuario" class="btn btn-success botonAgregar" role="button" *ngIf="administrador">Agregar Usuario</a>  
+  <h2>Usuarios registrados</h2>
+    
+    
+<table class="table">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Cédula</th>
+          <th scope="col">Email</th>
+          <th scope="col">fechaCreacion</th>
+          <th scope="col">fechaActualizacion</th>
+          <th scope="col">fechaUltimoAcceso</th>
+          <th scope="col" *ngIf="administrador">Editar</th>
+          <th scope="col"*ngIf="administrador">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuarioNuevo of usuarios">
+          <th scope="row">{{usuarioNuevo.id}}</th>
+          <td>{{usuarioNuevo.nombres}}</td>
+          <td>{{usuarioNuevo.apellidos}}</td>
+          <td>{{usuarioNuevo.cedula}}</td>
+          <td>{{usuarioNuevo.email}}</td>
+          <td>{{usuarioNuevo.fechaCreacion}}</td>
+          <td>{{usuarioNuevo.fechaActualizacion}}</td>
+          <td>{{usuarioNuevo.fechaUltimoAcceso}}</td>
+          <td *ngIf="administrador"><a href="/editarUsuario/{{usuarioNuevo.id}}" role="button" class="btn btn-primary">Editar</a> </td>
+          <td *ngIf="administrador"><a href="/eliminarUsuario//{{usuarioNuevo.id}}" role="button" class="btn btn-danger">Eliminar</a> </td>
+        </tr>
+      </tbody>
+    </table>
 </div>

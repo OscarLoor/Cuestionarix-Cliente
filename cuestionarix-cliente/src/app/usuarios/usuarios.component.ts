@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario';
+import { UsuarioService } from '../usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -7,21 +8,52 @@ import { Usuario } from '../usuario';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-  usuarioNuevo: Usuario ={
-    id: 1,
-    nombres: "Oscar Andres",
-    apellidos: "Loor Landeta",
-    cedula: "1723479117",
-    email: "o.loor@loah.ec",
-    password: "brcript.clave",
-    fechaCreacion: "2018-12-19 23:16:40",
-    fechaActualizacion: "2018-12-19 23:16:40",
-    fechaUltimoAcceso: "2018-12-19 23:16:40"
+
+  usuarios: Usuario[];
+  idUsuario:number;
+  token: string;
+  administrador: boolean;
+
+  public esAdministrador(idRecibido){
+      if((idRecibido % 3) == 0 || idRecibido == 1){
+          return true;
+      }else{
+          return false;
+      }
   }
 
-  constructor() { }
+  public editar(idRecibido) {
+    console.log("Editar"+idRecibido);
+      
+  }
+  public eliminar(idRecibido) {
+    console.log("Eliminar"+idRecibido);
+    
+  }
+  getUsuarios(): void{
+    this.usuarioService.getUsuarios(this.token, this.idUsuario)
+    .subscribe(usuarios => {
+      let dataValues = []; //For values
+      for(let key in usuarios) {   //Pay attention to the 'in'
+          dataValues.push(usuarios[key]);
+      }
+      //El servidor me devuelve, error y mensaje, despues del parser el mensaje esta en [1]
+      this.usuarios = dataValues[1]
+    }, error =>{
+      console.log("Error");
+      console.log(error);
+      
+    });
+  }
+  
+  constructor(private usuarioService: UsuarioService) {
+    this.idUsuario = 1;
+    this.administrador = this.esAdministrador(this.idUsuario);
+    this.token = "rutasSecretas";
+  }
 
   ngOnInit() {
+    this.getUsuarios();
   }
 
 }
