@@ -6,3 +6,4 @@ Proyecto realizado con angular
 2) Ingresar al directorio ./cuestionarix-cliente
 3) Instalar dependencias npm install
 4) Ejecutar el comando ng serve --open
+5) Ingresar en: http://localhost:4200/login
