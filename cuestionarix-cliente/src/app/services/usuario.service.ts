@@ -31,4 +31,14 @@ export class UsuarioService {
     return this.http.post(this.urlBase+"/ingresar", data, config)
   }
 
+  eliminarUsuario(idUsuarioPorEliminar: number){
+    const data = {
+      'token': this.cookieService.get('token'), 
+      'id': parseInt(this.cookieService.get('idUsuario')), 
+      'idPorBorrar': idUsuarioPorEliminar
+    };
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    return this.http.post(this.urlBase+"/borrarUsuario", data, config)
+  }
+
 }
