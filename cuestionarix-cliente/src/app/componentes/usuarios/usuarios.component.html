@@ -35,7 +35,7 @@
           <td *ngIf="(administrador && (usuarioNuevo.id % 3) != 0 && usuarioNuevo.id != 1) || usuarioNuevo.id == idUsuario; else columnaVacia"><a href="/editarUsuario/{{usuarioNuevo.id}}" role="button" class="btn btn-primary">Editar</a> </td>
           <td *ngIf="(administrador && (usuarioNuevo.id % 3) != 0 && usuarioNuevo.id != 1) || usuarioNuevo.id == idUsuario; else columnaVacia"><a href="/eliminarUsuario//{{usuarioNuevo.id}}" role="button" class="btn btn-danger">Eliminar</a> </td>
           <ng-template #columnaVacia>
-            <td>*Es administrador</td>
+            <td></td>
           </ng-template>
         </tr>
       </tbody>
