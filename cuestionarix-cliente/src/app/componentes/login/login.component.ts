@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,9 +41,14 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private usuarioService: UsuarioService, private router: Router, private cookieService: CookieService) { }
+  constructor(
+    private usuarioService: UsuarioService, 
+    private router: Router, 
+    private cookieService: CookieService,
+    private authService:AuthService) { }
 
   ngOnInit() {
+    this.authService.tienePermiso();
   }
 
 }

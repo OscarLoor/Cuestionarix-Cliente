@@ -3,17 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule }    from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './componentes/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CerrarSesionComponent } from './componentes/cerrar-sesion/cerrar-sesion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuariosComponent,
-    LoginComponent
+    LoginComponent,
+    CerrarSesionComponent
   ],
   imports: [
     BrowserModule,

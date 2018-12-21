@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../usuario';
-import { UsuarioService } from '../usuario.service';
+import { Usuario } from '../../models/usuario';
+import { UsuarioService } from '../../services/usuario.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -32,7 +33,7 @@ export class UsuariosComponent implements OnInit {
     
   }
   getUsuarios(): void{
-    this.usuarioService.getUsuarios(this.token, this.idUsuario)
+    this.usuarioService.getUsuarios()
     .subscribe(usuarios => {
       let dataValues = []; //For values
       for(let key in usuarios) {   //Pay attention to the 'in'
@@ -42,19 +43,22 @@ export class UsuariosComponent implements OnInit {
       this.usuarios = dataValues[1]
     }, error =>{
       console.log("Error");
+      
       console.log(error);
       
     });
   }
   
-  constructor(private usuarioService: UsuarioService, private cookieService: CookieService){
-    
+  constructor(
+    private usuarioService: UsuarioService, 
+    private cookieService: CookieService, 
+    private authService: AuthService){
   }
 
   ngOnInit() {
+    this.authService.tienePermiso();
     this.idUsuario = parseInt(this.cookieService.get('idUsuario'));
     this.administrador = this.esAdministrador(this.idUsuario);
-    this.token = this.cookieService.get('token');
     this.getUsuarios();
   }
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from './usuario';
+import { Usuario } from '../models/usuario';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UsuarioService {
   urlBase ="http://localhost:8081";
   
-  constructor(private http: HttpClient,) { }
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService
+  ) { }
 
-  getUsuarios(token:string, id:number): Observable<Usuario[]>{
+  getUsuarios(): Observable<Usuario[]>{
 
-    const data = {'token': token, 'id': id};
+    const data = {'token': this.cookieService.get('token'), 'id': parseInt(this.cookieService.get('idUsuario')) };
     const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
     return this.http.post<Usuario[]>(this.urlBase+"/mostrarUsuarios", data, config)
