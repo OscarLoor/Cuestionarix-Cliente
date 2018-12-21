@@ -41,4 +41,30 @@ export class UsuarioService {
     return this.http.post(this.urlBase+"/borrarUsuario", data, config)
   }
 
+  buscarPorID(idParaBuscar){
+    
+    const data = {
+      'token': this.cookieService.get('token'), 
+      'idRecibido': parseInt(this.cookieService.get('idUsuario')), 
+      'idParaBuscar': idParaBuscar
+    };
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    return this.http.post(this.urlBase+"/buscarPorID", data, config)
+  }
+
+  editarUsuario(usuario){
+    const data = {
+      'token': this.cookieService.get('token'), 
+      'idUsuarioSolicitante': parseInt(this.cookieService.get('idUsuario')), 
+      'nombres': usuario.nombres,
+      "apellidos": usuario.apellidos,
+      "cedula": usuario.cedula,
+      "password": usuario.password,
+      "email": usuario.email,
+      "id": usuario.id
+    };
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    return this.http.post(this.urlBase+"/modificarUsuario", data, config)
+  }
+
 }

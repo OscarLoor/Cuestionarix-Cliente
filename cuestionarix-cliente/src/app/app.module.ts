@@ -9,13 +9,15 @@ import { HttpClientModule }    from '@angular/common/http';
 import { LoginComponent } from './componentes/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CerrarSesionComponent } from './componentes/cerrar-sesion/cerrar-sesion.component';
+import { EditarUsuarioComponent } from './componentes/editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuariosComponent,
     LoginComponent,
-    CerrarSesionComponent
+    CerrarSesionComponent,
+    EditarUsuarioComponent
   ],
   imports: [
     BrowserModule,
