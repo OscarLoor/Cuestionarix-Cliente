@@ -10,6 +10,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CerrarSesionComponent } from './componentes/cerrar-sesion/cerrar-sesion.component';
 import { EditarUsuarioComponent } from './componentes/editar-usuario/editar-usuario.component';
+import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EditarUsuarioComponent } from './componentes/editar-usuario/editar-usua
     UsuariosComponent,
     LoginComponent,
     CerrarSesionComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    CrearUsuarioComponent
   ],
   imports: [
     BrowserModule,

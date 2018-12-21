@@ -67,4 +67,16 @@ export class UsuarioService {
     return this.http.post(this.urlBase+"/modificarUsuario", data, config)
   }
 
+  crearUsuario(usuario){
+    const data = {
+      'nombres': usuario.nombres,
+      "apellidos": usuario.apellidos,
+      "cedula": usuario.cedula,
+      "password": usuario.password,
+      "email": usuario.email
+    };
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    return this.http.post(this.urlBase+"/usuarios", data, config)
+  }
+
 }
